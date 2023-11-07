@@ -11,7 +11,7 @@ const getAllMakeups = async () => {
 
 const getOneMakeup = async (id) => {
     try {
-        const oneMakeup = await.db.one("SELECT * FROM makeups WHERE id=$1", id)
+        const oneMakeup = await db.one("SELECT * FROM makeups WHERE id=$1", id)
         return oneMakeup
     } catch(err) {
         return err

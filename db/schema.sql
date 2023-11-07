@@ -4,11 +4,11 @@ CREATE DATABASE makeups_dev;
 
 \c makeups_dev;
 
-CREATE TABLE makeups {
+CREATE TABLE makeups (
     id SERIAL PRIMARY KEY,
     name TEXT NOT NULL,
     image TEXT,
     link TEXT,
-    category, TEXT,
-    cost, INT
-};
+    category TEXT,
+    cost NUMERIC
+);
