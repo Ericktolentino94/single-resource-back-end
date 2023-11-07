@@ -1,6 +1,12 @@
 const express = require("express");
 
-const { getAllMakeups, getOneMakeup } = require("../queries/makeups");
+const {
+  getAllMakeups,
+  getOneMakeup,
+  createMakeup,
+  deleteMakeup,
+  updateMakeup,
+} = require("../queries/makeups");
 
 const makeups = express.Router();
 
