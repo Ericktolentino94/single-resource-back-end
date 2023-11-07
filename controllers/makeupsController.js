@@ -46,4 +46,12 @@ makeups.delete("/:id", async (req, res) => {
   }
 });
 
+makeups.put("/:id", async (req, res) => {
+  const { id } = req.params;
+  const updatedMakeup = await updateMakeup(id, req.body);
+  if (updatedMakeup.id) {
+    res.status(200).json(updateMakeup);
+  } else res.status(404).json("No makeup found matching that id");
+});
+
 module.exports = makeups;
