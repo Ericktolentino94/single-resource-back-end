@@ -32,4 +32,18 @@ makeups.post("/", checkName, checkBoolean, async (req, res) => {
   }
 });
 
+makeups.delete("/:id", async (req, res) => {
+  try {
+    const { id } = req.params;
+    const deletedMakeup = await deleteMakeup(id);
+    if (deletedMakeup) {
+      res.status(200).jsom({ success: true, payload: { data: deletedMakeup } });
+    } else {
+      res.status(404).json("item could not be found");
+    }
+  } catch (err) {
+    res.send(err);
+  }
+});
+
 module.exports = makeups;
