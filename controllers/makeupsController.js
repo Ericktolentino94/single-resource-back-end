@@ -1,5 +1,6 @@
 const express = require("express");
 
+
 const {
   getAllMakeups,
   getOneMakeup,
@@ -7,6 +8,9 @@ const {
   deleteMakeup,
   updateMakeup,
 } = require("../queries/makeups");
+
+const { getAllMakeups, getOneMakeup, createMakeup, deleteMakeup } = require("../queries/makeups");
+>
 
 const makeups = express.Router();
 
@@ -59,5 +63,32 @@ makeups.put("/:id", async (req, res) => {
     res.status(200).json(updateMakeup);
   } else res.status(404).json("No makeup found matching that id");
 });
+
+
+module.exports = makeups;
+
+makeups.post("/", async (req, res) => {
+    try {
+        const createdMakeup = await createMakeup(req.body)
+        res.json(createdMakeup)
+    } catch (err) {
+        return err
+    }
+})
+
+makeups.delete("/:id", async (req, res) => {
+    try {
+        const { id } = req.params;
+        const deletedMakeup = await deleteMakeup(id);
+        if(deletedMakeup) {
+            res.status(200).json({success: true, payload: {data: deletedMakeup}})
+        } else {
+            res.status(404).json("Makeup with that id not found")
+        }
+
+    } catch (err) {
+        return err
+    }
+})
 
 module.exports = makeups;
