@@ -1,16 +1,6 @@
 const express = require("express");
+const { getAllMakeups, getOneMakeup, createMakeup, deleteMakeup, updateMakeup } = require("../queries/makeups");
 
-
-const {
-  getAllMakeups,
-  getOneMakeup,
-  createMakeup,
-  deleteMakeup,
-  updateMakeup,
-} = require("../queries/makeups");
-
-const { getAllMakeups, getOneMakeup, createMakeup, deleteMakeup } = require("../queries/makeups");
->
 
 const makeups = express.Router();
 
@@ -33,40 +23,6 @@ makeups.get("/:id", async (req, res) => {
   }
 });
 
-makeups.post("/", checkName, checkBoolean, async (req, res) => {
-  try {
-    const createMakeup = await createMakeup(req.body);
-    res.json(createMakeup);
-  } catch (error) {
-    res.status(400).json({ error: "Error" });
-  }
-});
-
-makeups.delete("/:id", async (req, res) => {
-  try {
-    const { id } = req.params;
-    const deletedMakeup = await deleteMakeup(id);
-    if (deletedMakeup) {
-      res.status(200).jsom({ success: true, payload: { data: deletedMakeup } });
-    } else {
-      res.status(404).json("item could not be found");
-    }
-  } catch (err) {
-    res.send(err);
-  }
-});
-
-makeups.put("/:id", async (req, res) => {
-  const { id } = req.params;
-  const updatedMakeup = await updateMakeup(id, req.body);
-  if (updatedMakeup.id) {
-    res.status(200).json(updateMakeup);
-  } else res.status(404).json("No makeup found matching that id");
-});
-
-
-module.exports = makeups;
-
 makeups.post("/", async (req, res) => {
     try {
         const createdMakeup = await createMakeup(req.body)
@@ -74,7 +30,7 @@ makeups.post("/", async (req, res) => {
     } catch (err) {
         return err
     }
-})
+});
 
 makeups.delete("/:id", async (req, res) => {
     try {
@@ -85,10 +41,18 @@ makeups.delete("/:id", async (req, res) => {
         } else {
             res.status(404).json("Makeup with that id not found")
         }
-
+        
     } catch (err) {
         return err
     }
 })
+
+makeups.put("/:id", async (req, res) => {
+  const { id } = req.params;
+  const updatedMakeup = await updateMakeup(id, req.body);
+  if (updatedMakeup.id) {
+    res.status(200).json(updateMakeup);
+  } else res.status(404).json("No makeup found matching that id");
+});
 
 module.exports = makeups;

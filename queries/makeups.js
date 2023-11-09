@@ -34,11 +34,24 @@ const deleteMakeup = async (id) => {
     } catch (err) {
         return err
     }
-}
+};
+
+const updateMakeup = async (id, makeup) => {
+    try {
+    const {name, image, link, category, cost } = makeup;
+    const updatedMakeup = await db.one("UPDATE makeups SET name=$1, image=$2,link=$3, category=$4, cost=$5 WHERE id=$6 RETURNING *",
+    [name, image, link, category, cost, id]
+    );
+    return updatedMakeup
+    } catch (err) {
+        return err
+    }
+};
 
 module.exports = {
     getAllMakeups,
     getOneMakeup, 
     createMakeup,
-    deleteMakeup
+    deleteMakeup,
+    updateMakeup
 }
