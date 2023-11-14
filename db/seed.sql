@@ -2,9 +2,9 @@
 
 INSERT INTO makeups (name, image, link, category, cost)
 VALUES
-('DIAMOND BOMB ALL-OVER DIAMOND VEIL', 'hhttps://cdn.shopify.com/s/files/1/0341/3458/9485/products/FB40013_FB8003_600x.jpg?v=1614393366',
-'https://fentybeauty.com/products/diamond-bomb-all-over-diamond-veil-how-many-carats?variant=35110473826349',
-'Shimmer',42),
+('Lipstick', 'https://sdcdn.io/mac/us/mac_sku_M2LP06_1x1_0.png?width=1080&height=1080',
+'https://www.maccosmetics.com/product/13854/310/products/makeup/lips/lipstick/matte-lipstick?shade=Russian_Red',
+'Lipstick',23),
 ('FF Crème To Powder Skin', 'https://fashionfair.com/cdn/shop/products/FF_CREME_BLACK_BRUNETTE_1200x.jpg?v=1697491648',
 'https://fashionfair.com/products/ff-creme-to-powder-skin?variant=37855870648474',
 'Face',39),
