@@ -2,7 +2,7 @@ const express = require("express");
 const cors = require("cors");
 const app = express();
 const makeupsController = require("./controllers/makeupsController");
-const reviewsController = require("./controllers/reviewsController");
+
 
 
 app.use(cors());
