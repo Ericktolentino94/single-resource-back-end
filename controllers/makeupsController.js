@@ -7,11 +7,14 @@ const makeups = express.Router();
 makeups.get("/", async (req, res) => {
   const allMakeups = await getAllMakeups();
   console.log(allMakeups,"$$$$$$$$$$$$$$$$")
+  try {
   if (allMakeups[0]) {
     res.status(200).json({ success: true, data: { payload: allMakeups } });
-  } else {
-    res.status(404).json({ success: false, data: { error: "Failed to fetch all" } });
-  }
+  } 
+} catch (err) {
+  console.error( err )
+  res.status(404).json({success:false, data:{ error: err}});
+}
 });
 
 makeups.get("/:id", async (req, res) => {
